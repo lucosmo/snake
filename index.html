@@ -62,7 +62,7 @@
 				
 				// The player and its settings
 				player = game.add.sprite(32, game.world.height - 150, 'head');
-				
+				//snakePath.push(Phaser.Point,player.x,player.y);
 				//  We need to enable physics on the player
 				game.physics.arcade.enable(player);
 				game.physics.arcade.allowGravity=false;
@@ -157,47 +157,47 @@
 					player.frame = 4;
 					}
 				
-				
+				moveSnake(player);
 				//  Allow the player to jump if they are touching the ground.
 				/*if (cursors.up.isDown && player.body.touching.down)
 				{
 					player.body.velocity.y = -350;
 				}*/
-				if(snakePath.length>0 && snakeSection.length>0){
+				if(speed>0&&snakePath.length>0&&snakeSection.length>0){
 					var part = snakePath.pop();
 
 					part.setTo(player.x, player.y);
 
 					snakePath.unshift(part);
-					var j=snakePath.length;
+					var j=speed;
 					console.log("snake length="+j+" speed="+speed);
 					for (var i = 0; i < j; i++)
 					{
 						console.log(i);
-						snakeSection[i].x = snakePath[i].x;
-						snakeSection[i].y = snakePath[i].y;
+						snakeSection[i].x = snakePath[i*6].x;
+						snakeSection[i].y = snakePath[i*6].y;
 					}
 				}
+				
 			}
 			
 			function moveSnake(player){
 				var x=player.x;
 				var y=player.y;
-				var i=speed;
-				for(j=0;j<=i;j++){
-					
+				if(snakePath.length<60){
+					snakePath.push(new Phaser.Point(x,y));
 				}
 				
 				
 			}
 			
 			function snakeBody(player){
-				var x=player.x+player.width;
+				var x=player.x;
 				var y=player.y;
 				
-				snakePath[speed]=new Phaser.Point(x,y);
+				snakePath.push(new Phaser.Point(x,y));
 				snakeSection[speed]=game.add.sprite(x+60, y+30, 'square');
-				//snakePath.pop();
+				snakePath.pop();
 				console.log("new snakeSection created");
 				game.physics.arcade.enable(snakeSection[speed]);
 				snakeSection[speed].body.collideWorldBounds = true;
