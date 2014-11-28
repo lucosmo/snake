@@ -98,7 +98,7 @@
 				game.physics.arcade.overlap(player, items, collectItem, null, this);
 				
 				
-				if (cursors.left.isDown)
+				if (cursors.left.isDown&&last!="right")
 				{
 					//  Move to the left
 					
@@ -108,7 +108,7 @@
 					last="left";
 					
 				}
-				else if (cursors.right.isDown)
+				else if (cursors.right.isDown&&last!="left")
 				{
 					//  Move to the right
 					player.body.velocity.x += (150+speed*15);
@@ -117,14 +117,14 @@
 					last="right";
 					
 				}
-				else if (cursors.up.isDown){
+				else if (cursors.up.isDown&&last!="down"){
 				//  Move to the up
 					player.body.velocity.x = 0;
 					player.body.velocity.y -= (150+speed*15);
 					//player.animations.play('up');
 					last="up";
 				}
-				else if (cursors.down.isDown){
+				else if (cursors.down.isDown&&last!="up"){
 				//  Move to the down
 					player.body.velocity.x = 0;
 					player.body.velocity.y += (150+speed*15);
@@ -174,8 +174,8 @@
 					for (var i = 0; i < j; i++)
 					{
 						console.log(i);
-						snakeSection[i].x = snakePath[i*6].x;
-						snakeSection[i].y = snakePath[i*6].y;
+						snakeSection[i].x = snakePath[(i+1)*6].x;
+						snakeSection[i].y = snakePath[(i+1)*6].y;
 					}
 				}
 				
@@ -184,7 +184,7 @@
 			function moveSnake(player){
 				var x=player.x;
 				var y=player.y;
-				if(snakePath.length<60){
+				if(snakePath.length<70){
 					snakePath.push(new Phaser.Point(x,y));
 				}
 				
@@ -192,11 +192,11 @@
 			}
 			
 			function snakeBody(player){
-				var x=player.x;
-				var y=player.y;
+				var x=(player.x+40);
+				var y=(player.y+40);
 				
 				snakePath.push(new Phaser.Point(x,y));
-				snakeSection[speed]=game.add.sprite(x+60, y+30, 'square');
+				snakeSection[speed]=game.add.sprite(x, y, 'square');
 				snakePath.pop();
 				console.log("new snakeSection created");
 				game.physics.arcade.enable(snakeSection[speed]);
