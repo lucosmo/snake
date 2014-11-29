@@ -12,7 +12,7 @@
     </head>
     <body>
 		<script type="text/javascript">
-			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
+			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 			var platforms;
 			var cursors;
 			var player;
@@ -174,8 +174,8 @@
 					for (var i = 0; i < j; i++)
 					{
 						console.log(i);
-						snakeSection[i].x = snakePath[(i+1)*6].x;
-						snakeSection[i].y = snakePath[(i+1)*6].y;
+						snakeSection[i].x = snakePath[i*6].x;
+						snakeSection[i].y = snakePath[i*6].y;
 					}
 				}
 				
@@ -192,13 +192,13 @@
 			}
 			
 			function snakeBody(player){
-				var x=(player.x+40);
-				var y=(player.y+40);
+				var x=(player.x);
+				var y=(player.y);
 				
 				snakePath.push(new Phaser.Point(x,y));
 				snakeSection[speed]=game.add.sprite(x, y, 'square');
 				snakePath.pop();
-				console.log("new snakeSection created");
+				console.log("new snakeSection created";
 				game.physics.arcade.enable(snakeSection[speed]);
 				snakeSection[speed].body.collideWorldBounds = true;
 				
@@ -222,9 +222,6 @@
 				if (y<=30) y=30;
 				if (y>=570) y=570;
 				return y;
-			}
-			function render(){
-				game.debug.spriteInfo(player, 32, 32);
 			}
 
 		</script>
