@@ -227,9 +227,10 @@
 				if (y>=570) y=570;
 				return y;
 			}
-			function collisionHandler(){
+			function collisionHandler(player,platforms){
 				player.kill();
-				snakeSection.kill();
+				for(var i=0;i<speed;i++)
+					snakeSection[i].kill();
 			}
 		</script>
 
