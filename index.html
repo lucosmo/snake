@@ -42,10 +42,11 @@
 	 
 				//  The platforms group contains the ground and the 2 ledges we can jump on
 				platforms = game.add.group();
-			 
+				
 				//  We will enable physics for any object that is created in this group
 				platforms.enableBody = true;
-			 
+				var ledge=platforms.create(300, 290, 'platform');
+				ledge.body.immovable=true;
 				
 				items=game.add.group();
 				items.enableBody=true;
@@ -96,6 +97,7 @@
 				player.body.velocity.x = 0;
 				player.body.velocity.y=0;
 				game.physics.arcade.collide(items, platforms);
+				game.physics.arcade.collide(player, platforms, collisionHandler, null, this);
 				game.physics.arcade.overlap(player, items, collectItem, null, this);
 				
 				
@@ -172,11 +174,12 @@
 					snakePath.unshift(part);
 					var j=speed;
 					console.log("snake length="+j+" speed="+speed);
+					
 					for (var i = 0; i < j; i++)
 					{
 						console.log(i);
-						snakeSection[i].x = snakePath[(i+1)*6].x;
-						snakeSection[i].y = snakePath[(i+1)*6].y;
+						snakeSection[i].x = snakePath[((i+1)*6)].x;
+						snakeSection[i].y = snakePath[((i+1)*6)].y;
 					}
 				}
 				game.world.wrap(player,0,true);
@@ -224,7 +227,10 @@
 				if (y>=570) y=570;
 				return y;
 			}
-
+			function collisionHandler(){
+				player.kill();
+				snakeSection.kill();
+			}
 		</script>
 
 
