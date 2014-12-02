@@ -21,6 +21,7 @@
 			var items;
 			var snakePath=new Array();
 			var snakeSection=new Array();//snake body
+			var score;
 			function preload () {
 
 				game.load.image('background', 'backg.png');
@@ -83,7 +84,8 @@
 				cursors=game.input.keyboard.createCursorKeys();
 				player.body.acceleration=0;
 				game.camera.follow(player);
-				
+				var style = { font: "25px Arial", fill: "#ff0044", align: "left" };
+				score=game.add.text(10, 10, "score: ", style);
 				
 				
 			}
@@ -213,6 +215,7 @@
 				
 				snakeBody(player);
 				speed++;
+				score.setText("score: "+speed);
 				
 			}
 			function giveX(){
@@ -231,6 +234,7 @@
 				player.kill();
 				for(var i=0;i<speed;i++)
 					snakeSection[i].kill();
+				score.setText("GAME OVER");
 			}
 		</script>
 
