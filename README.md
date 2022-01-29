@@ -1,2 +1,2 @@
 # snake
-classic snake game using phaser
+classic snake game built with JavaScript and phaser.
