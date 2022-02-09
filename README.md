@@ -7,3 +7,4 @@ GitHub pages address is ready: http://lucosmo.github.io/snake/ :crossed_fingers:
  - [ ] update to phaser 4
  - [ ] make game LIVE
  - [ ] multiplayer mode
+ - [ ] mobile friendly
