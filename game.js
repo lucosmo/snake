@@ -10,7 +10,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 			var score;
 			function preload () {
 
-				\game.load.image('background', '/assets/pics/backg.png');
+				game.load.image('background', '/assets/pics/backg.png');
 				game.load.image('aub', '/assets/pics/aubergine.png');
 				game.load.image('broc', '/assets/pics/broccoli.png');
 				game.load.image('platform', '/assets/pics/platform.png');
