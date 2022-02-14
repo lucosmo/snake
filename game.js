@@ -10,12 +10,12 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 			var score;
 			function preload () {
 
-				game.load.image('background', 'backg.png');
-				game.load.image('aub', 'aubergine.png');
-				game.load.image('broc', 'broccoli.png');
-				game.load.image('platform', 'platform.png');
-				game.load.image('square', 'square.png');
-				game.load.spritesheet('head', 'head.png');//head of snake
+				\game.load.image('background', '/assets/pics/backg.png');
+				game.load.image('aub', '/assets/pics/aubergine.png');
+				game.load.image('broc', '/assets/pics/broccoli.png');
+				game.load.image('platform', '/assets/pics/platform.png');
+				game.load.image('square', '/assets/pics/square.png');
+				game.load.spritesheet('head', '/assets/pics/head.png');//head of snake
 
 			}
 
