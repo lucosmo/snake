@@ -15,7 +15,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 				game.load.image('broc', '/assets/pics/broccoli.png');
 				game.load.image('platform', '/assets/pics/platform.png');
 				game.load.image('square', '/assets/pics/square.png');
-				game.load.spritesheet('head', '/assets/pics/head.png');//head of snake
+				game.load.spritesheet('head', '/assets/pics/head.png');
 
 			}
 
