@@ -20,24 +20,30 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 			}
 
 			function create () {
-
+				console.log("in create");
 				//  We're going to be using physics, so enable the Arcade Physics system
 				game.physics.startSystem(Phaser.Physics.ARCADE);
 				game.world.setBounds(0,0,800,600);
 				//  A simple background for our game
 				game.add.sprite(0, 0, 'background');
-	 
+
 				//  The platforms group contains the ground and the 2 ledges we can jump on
 				platforms = game.add.group();
-				
+
 				//  We will enable physics for any object that is created in this group
 				platforms.enableBody = true;
 				var ledge=platforms.create(300, 290, 'platform');
 				ledge.body.immovable=true;
-				
+				this.input.addDownCallback(function() {
+
+				if (game.sound.context.state === 'suspended') {
+					game.sound.context.resume();
+				}
+
+			});
 				items=game.add.group();
 				items.enableBody=true;
-				
+
 				for(var i=0; i<5;i++)
 				{
 					var aub=items.create(giveX(),giveY(),'aub');
@@ -47,7 +53,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 					var str = "aubx="+broc.x+" auby="+broc.y;
 					console.log(str); // Write the string to a file
 				}
-				
+
 				// The player and its settings
 				player = game.add.sprite(32, game.world.height - 150, 'head');
 				//snakePath.push(Phaser.Point,player.x,player.y);
@@ -72,11 +78,18 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 				game.camera.follow(player);
 				var style = { font: "25px Arial", fill: "#ff0044", align: "left" };
 				score=game.add.text(10, 10, "score: ", style);
-				
-				
+
+
 			}
 			var speed=0;
-			
+			function update() {
+				if (game.sound.context.state === 'suspended') {
+					game.sound.context.resume();
+}
+			}
+
+/*
+
 			function update() {
 				//  Collide the player and the stars with the platforms
 				//game.physics.arcade.collide(player, platforms);
@@ -87,17 +100,17 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 				game.physics.arcade.collide(items, platforms);
 				game.physics.arcade.collide(player, platforms, collisionHandler, null, this);
 				game.physics.arcade.overlap(player, items, collectItem, null, this);
-				
-				
+
+
 				if (cursors.left.isDown&&last!="right")
 				{
 					//  Move to the left
-					
+
 					player.body.velocity.x -= (150+speed*15);
 					player.body.velocity.y=0;
 					//player.animations.play('head');
 					last="left";
-					
+
 				}
 				else if (cursors.right.isDown&&last!="left")
 				{
@@ -106,7 +119,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 					player.body.velocity.y=0;
 					//player.animations.play('right');
 					last="right";
-					
+
 				}
 				else if (cursors.up.isDown&&last!="down"){
 				//  Move to the up
@@ -144,16 +157,13 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 				}
 				else{
 					player.animations.stop();
-					
+
 					player.frame = 4;
 					}
-				
+
 				moveSnake(player);
-				//  Allow the player to jump if they are touching the ground.
-				/*if (cursors.up.isDown && player.body.touching.down)
-				{
-					player.body.velocity.y = -350;
-				}*/
+
+
 				if(speed>0&&snakePath.length>0&&snakeSection.length>0){
 					var part = snakePath.pop();
 
@@ -162,7 +172,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 					snakePath.unshift(part);
 					var j=speed;
 					console.log("snake length="+j+" speed="+speed);
-					
+
 					for (var i = 0; i < j; i++)
 					{
 						console.log(i);
@@ -172,37 +182,37 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 				}
 				game.world.wrap(player,0,true);
 			}
-			
+
 			function moveSnake(player){
 				var x=player.x;
 				var y=player.y;
 				if(snakePath.length<70){
 					snakePath.push(new Phaser.Point(x,y));
 				}
-				
-				
+
+
 			}
-			
+
 			function snakeBody(player){
 				var x=(player.x);
 				var y=(player.y);
-				
+
 				snakePath.push(new Phaser.Point(x,y));
 				snakeSection[speed]=game.add.sprite(x, y, 'square');
 				snakePath.pop();
 				console.log("new snakeSection created");
 				game.physics.arcade.enable(snakeSection[speed]);
 				snakeSection[speed].body.collideWorldBounds = true;
-				
+
 			}
 			function collectItem(player, items){
 				items.kill();
 				//snakeSection[speed]=game.add.sprite(player.
-				
+
 				snakeBody(player);
 				speed++;
 				score.setText("score: "+speed);
-				
+
 			}
 			function giveX(){
 				var x=Math.floor(Math.random()*800);
@@ -222,3 +232,4 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 					snakeSection[i].kill();
 				score.setText("GAME OVER");
 			}
+*/
