@@ -19,8 +19,16 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 			}
 
+
 			function create () {
 				console.log("in create");
+				this.input.addDownCallback(function() {
+
+				if (game.sound.context.state === 'suspended') {
+					game.sound.context.resume();
+				}
+
+			});
 				//  We're going to be using physics, so enable the Arcade Physics system
 				game.physics.startSystem(Phaser.Physics.ARCADE);
 				game.world.setBounds(0,0,800,600);
@@ -83,6 +91,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 			}
 			var speed=0;
 			function update() {
+				this.input.addDownCallback(function() {
+
+				if (game.sound.context.state === 'suspended') {
+					game.sound.context.resume();
+				}});
 				if (game.sound.context.state === 'suspended') {
 					game.sound.context.resume();
 }
