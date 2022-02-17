@@ -2,9 +2,9 @@
 classic snake game built with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a> and <a href="https://phaser.io/">phaser</a> as a beginner phaser project.
 
 Hope to make a live version very soon :hourglass:
-GitHub pages address is ready: http://lucosmo.github.io/snake/ :crossed_fingers:	
+GitHub pages address is ready: http://lucosmo.github.io/snake/ :crossed_fingers:
 ## To do:
- - [ ] update to phaser 4
+ - [ ] update to phaser 3.55 (Phaser 3.55.2 "Ichika" is the current stable version and was released on 27th May 2021.)
  - [ ] make game LIVE
  - [ ] multiplayer mode
  - [ ] mobile friendly
