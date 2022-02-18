@@ -4,7 +4,7 @@ classic snake game built with <a href="https://developer.mozilla.org/en-US/docs/
 Hope to make a live version very soon :hourglass:
 GitHub pages address is ready: http://lucosmo.github.io/snake/ :crossed_fingers:
 ## To do:
- - [ ] update to phaser 3.55 (Phaser 3.55.2 "Ichika" is the current stable version and was released on 27th May 2021.)
+ - [x] update to phaser 3.55 (Phaser 3.55.2 "Ichika" is the current stable version and was released on 27th May 2021.)
  - [ ] make game LIVE
  - [ ] multiplayer mode
  - [ ] mobile friendly
