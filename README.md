@@ -11,3 +11,4 @@ GitHub pages address is ready: http://lucosmo.github.io/snake/ :crossed_fingers:
  - [ ] keyboard control
  - [ ] multiple levels
  - [ ] player stats
+ - [ ] tests
